@@ -1,0 +1,11 @@
+# Dev requirements
+black
+pre-commit
+pylint
+pylint-django
+
+# API requirements
+-r backend/requirements.txt
+
+# Sync requirements
+-r sync/requirements.txt

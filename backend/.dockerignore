@@ -1,0 +1,4 @@
+dependencies/djangostatic
+instantclient_19_8
+requests.http
+venv

@@ -1,0 +1,2 @@
+get-docker-secret==1.*
+requests==2.*

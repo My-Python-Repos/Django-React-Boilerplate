@@ -1,0 +1,20 @@
+version: "3.7"
+
+services:
+  pgadmin:
+    image: your_docker_repo/dpage/pgadmin4
+    ports:
+      - 8081:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.localhost
+      PGADMIN_DEFAULT_PASSWORD: admin
+    volumes:
+      - app_pgadmin:/var/lib/pgadmin
+    networks:
+      - pgadmin-network
+
+volumes:
+  app_pgadmin:
+
+networks:
+  pgadmin-network:

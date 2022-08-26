@@ -1,0 +1,30 @@
+repos:
+  - repo: https://your_gtihub /YOUR REPO
+    rev: v1.4 # https://your_gtihub /YOUR REPO/tags
+    hooks:
+      - id: autoflake
+        args:
+          - --imports=django
+          - --in-place
+
+  - repo: https://your_gtihub /YOUR REPO
+    rev: 5.8.0 # https://your_gtihub /YOUR REPO/tags
+    hooks:
+      - id: isort
+        args: ["--profile", "black", "--filter-files"]
+
+  - repo: https://your_gtihub /YOUR REPO
+    rev: 20.8b1 # https://your_gtihub /YOUR REPO/tags
+    hooks:
+      - id: black
+        language_version: python3
+
+  - repo: https://your_gtihub /pre-commit/mirrors-eslint
+    rev: v7.22.0 # https://your_gtihub /pre-commit/mirrors-eslint/tags
+    hooks:
+      - id: eslint
+        args:
+          - --config=frontend/.eslintrc.json
+          - --ignore-path=frontend/.eslintignore
+        files: \.[jt]sx?$ # *.js, *.jsx, *.ts and *.tsx
+        types: [file]

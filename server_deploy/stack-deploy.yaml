@@ -1,0 +1,70 @@
+# Set TAG environment variable to the release tag you wish to deploy then,
+# Deploy with sudo docker stack deploy -c stack-deploy.yaml django_react_boilerplate
+
+version: "3.7"
+
+services:
+  django:
+    image: your_docker_repo/django-react-boilerplate/django:${TAG}
+    environment:
+      BASE_URL: django-react-boilerplate.com
+      POSTGRES_DB_NAME: 
+      POSTGRES_HOST: 
+      POSTGRES_PORT: 
+      POSTGRES_USER: 
+      POSTGRES_ADMIN_USER: 
+      LOG_LEVEL: INFO
+    deploy:
+      mode: global
+    secrets:
+      - django_secret_key
+      - postgres_password
+      - postgres_admin_password
+    volumes:
+      - django_react_boilerplate_logs:/logs
+
+  nginx:
+    image: your_docker_repo/django-react-boilerplate/nginx:${TAG}
+    ports:
+      - 80:80
+      - 443:443
+    deploy:
+      mode: global
+    secrets:
+      - django-react-boilerplate.com.crt
+      - django-react-boilerplate.com.key
+      - ssl_password
+    volumes:
+      - django_react_boilerplate_logs:/logs
+
+  sync:
+    image: your_docker_repo/django-react-boilerplate/sync:${TAG}
+    environment:
+      SYNC_ENVIRONMENT: SERVER
+      API_BASE_URL: http://django:8000/api
+    deploy:
+      mode: replicated
+      replicas: 1
+    secrets:
+      - sync_api_key
+    volumes:
+      - django_react_boilerplate_logs:/logs
+
+secrets:
+  django_secret_key:
+    external: true
+  postgres_password:
+    external: true
+  postgres_admin_password:
+    external: true
+  sync_api_key:
+    external: true
+  django-react-boilerplate.com.crt:
+    external: true
+  django-react-boilerplate.com.key:
+    external: true
+  ssl_password:
+    external: true
+
+volumes:
+  django_react_boilerplate_logs:

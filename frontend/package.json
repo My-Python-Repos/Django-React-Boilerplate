@@ -1,0 +1,99 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@date-io/date-fns": "^2.13.1",
+    "@emotion/css": "^11.9.0",
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@mui/icons-material": "^5.6.2",
+    "@mui/lab": "^5.0.0-alpha.80",
+    "@mui/material": "^5.6.4",
+    "@mui/styles": "^5.6.2",
+    "axios": "^0.27.2",
+    "file-saver": "^2.0.5",
+    "formik": "^2.2.5",
+    "formik-material-ui": "^4.0.0-alpha.2",
+    "formik-material-ui-lab": "^1.0.0-alpha.2",
+    "js-cookie": "^3.0.1",
+    "lodash": "^4.17.21",
+    "material-ui": "^1.0.0-beta.47",
+    "material-ui-popup-state": "^2.0.0",
+    "prop-types": "^15.7.2",
+    "qs": "^6.9.6",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "5.0.1",
+    "yarn": "^1.22.4",
+    "yup": "^0.32.1"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "./src/components/**/*.jsx",
+      "./src/services/**/*.jsx",
+      "./src/App.jsx",
+      "./src/utilities.js"
+    ],
+    "coverageReporters": [
+      "html",
+      "text-summary",
+      "lcov"
+    ]
+  },
+  "jest-junit": {
+    "suiteName": "Jest Tests",
+    "outputDirectory": "./coverage",
+    "outputName": "junit.xml",
+    "uniqueOutputName": "false",
+    "classNameTemplate": "{classname}-{title}",
+    "titleTemplate": "{classname}-{title}",
+    "ancestorSeparator": " › ",
+    "usePathForSuiteName": "true"
+  },
+  "scripts": {
+    "start": "ESLINT_NO_DEV_ERRORS=true react-scripts start",
+    "build": "react-scripts build",
+    "eject": "react-scripts eject",
+    "test": "react-scripts test --watchAll=false",
+    "test:ci": "react-scripts test --ci --reporters=default --reporters=jest-junit",
+    "test:watch": "react-scripts test",
+    "test:coverage": "react-scripts test --coverage --watchAll",
+    "lint": "eslint --ext .js,.jsx .",
+    "lint:fix": "eslint --fix --ext .js,.jsx ."
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "proxy": "http://127.0.0.1:8000/",
+  "devDependencies": {
+    "@babel/preset-react": "^7.13.13",
+    "@testing-library/jest-dom": "^5.11.10",
+    "@testing-library/react": "^13.1.1",
+    "@testing-library/react-hooks": "^8.0.0",
+    "@testing-library/user-event": "^14.1.1",
+    "eslint": "^8.14.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^26.1.5",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "jest-junit": "^13.2.0",
+    "react-test-renderer": "18.1.0"
+  }
+}

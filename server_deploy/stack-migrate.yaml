@@ -1,0 +1,41 @@
+# Spawns 1 short-lived service that executes Django migrations.
+
+# Set TAG environment variable to the release tag you wish to deploy then,
+# Deploy with sudo docker stack deploy -c stack-migrate.yaml django_react_boilerplate_migration
+
+version: "3.7"
+
+services:
+  django-migrate:
+    image: your_docker_repo/django-react-boilerplate/django:${TAG}
+    environment:
+      BASE_URL: django-react-boilerplate.com/
+      POSTGRES_DB_NAME: 
+      POSTGRES_HOST: 
+      POSTGRES_PORT: 
+      POSTGRES_USER: 
+      POSTGRES_ADMIN_USER: 
+      LOG_LEVEL: INFO
+    command: ["sh", "migrate.sh"]
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: none
+    secrets:
+      - django_secret_key
+      - postgres_password
+      - postgres_admin_password
+    volumes:
+      - django_react_boilerplate_logs:/logs
+
+secrets:
+  django_secret_key:
+    external: true
+  postgres_password:
+    external: true
+  postgres_admin_password:
+    external: true
+
+volumes:
+  django_react_boilerplate_logs:

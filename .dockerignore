@@ -1,0 +1,5 @@
+venv/
+cmu_automation_ui/node_modules/
+cmu_automation_sync/
+instant_client_19_8/
+.git

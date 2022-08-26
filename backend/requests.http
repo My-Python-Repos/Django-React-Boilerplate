@@ -1,0 +1,77 @@
+# This file is used to help with development and testing of the API
+# Install the REST Client extension for VS Code to utilize this file 
+# https://marketplace.visualstudio.com/items?itemName=humao.rest-client
+
+POST http://localhost:3000/api/auth/login/
+Content-Type: application/json
+
+{
+    "msid": "restclient",
+    "password": "password"
+}
+
+###
+# Access and Refresh keys can be generated with the above request. Access keys expire periodically and must be refreshed or regenerated.
+# API Keys can be generated through the admin page.
+@access=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjIzNjk1MDQwLCJqdGkiOiIyZjk2YWU1ZTVhNmI0ZWYyYmYzYzYzYmNhNjIwYzQzZSIsInVzZXJfaWQiOjIsInVzZXJfbmFtZSI6IkpvaG4gRG9lIDEifQ.oAEs0B2wka-oTa8R2TjiYDy53ScDHRGf5Rq8MQKssFw
+@refresh=
+@apikey=
+
+### Basic GET - AgreementHeader
+GET http://localhost:8000/api/AgreementHeader/
+Content-Type: application/json
+Authorization: Bearer {{access}}
+
+### Basic GET using API Key
+GET http://localhost:8000/api/AgreementHeader/
+Content-Type: application/json
+Authorization: Api-Key {{apikey}}
+
+### GET Submitted
+GET http://localhost:8000/api/AgreementHeaderChild/?status=submitted&ordering=modified&limit=100
+Content-Type: application/json
+Authorization: Bearer {{access}}
+
+### GET with query string
+GET http://localhost:8000/api/AgreementHeader/?ordering=modified&status=pending&from_database=FDV01.FAC
+Content-Type: application/json
+Authorization: Bearer {{access}}
+
+### Create new - AgreementHeader
+POST http://localhost:8000/api/AgreementHeader/
+Content-Type: application/json
+Authorization: Bearer {{access}}
+
+{
+    "tracking_id": "ABC",
+    "from_database": "FDV01.FAC",
+    "to_database": "FDV02.FAC",
+    "prod_ready": true,
+    "agreement_ids": ["ABC%", "XYZ%", "A"]
+}
+
+### Update existing
+PATCH http://localhost:8000/api/AgreementHeader/1/
+Content-Type: application/json
+Authorization: Bearer {{access}}
+
+{
+    "added_count": 10,
+    "deleted_count": 10
+}
+
+### Create new - BackEndScript
+POST http://localhost:8000/api/BackEndScript/
+Content-Type: application/json
+Authorization: Bearer {{access}}
+
+{
+    "tracking_id": "ABC",
+    "from_database": "FDV01.FAC",
+    "to_database": "FDV02.FAC",
+    "approver": "test@example.com",
+    "request_map": "0000000132",
+    "first_criteria": ["%"],
+    "second_criteria": ["%"],
+    "third_criteria": ["%"]
+} 
